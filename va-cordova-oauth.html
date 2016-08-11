@@ -1,0 +1,36 @@
+<dom-module id="va-cordova-oauth">
+
+  <script>
+    Polymer({
+
+      is: 'va-cordova-oauth',
+
+      get oauthManager() {
+        if (!cordova) {
+          throw new Error('No unified JavaScript layer for Cordova.');
+        }
+
+        if (!cordova.plugins.oauthManager) {
+          throw new Error('No OAuth plugin found.');
+        }
+
+        return cordova.plugins.oauthManager;
+      },
+
+      signInWithOAuth: function (provider) {
+        switch (provider) {
+          case 'google':
+            this.oauthManager.signInWithGoogle();
+            break;
+          case 'facebook':
+            this.oauthManager.signInWithFacebook();
+            break;
+          case 'twitter':
+            this.oauthManager.signInWithTwitter();
+            break;
+        }
+      }
+    });
+  </script>
+
+</dom-module>
