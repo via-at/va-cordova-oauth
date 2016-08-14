@@ -1,0 +1,16 @@
+{
+  "name": "va-cordova-oauth",
+  "version": "0.0.1",
+  "description": "The webcomponent which intracts with cordova-plugin-va-oauth",
+  "main": [
+    "va-cordova-oauth.html"
+  ],
+  "license" : "MIT",
+  "dependencies": {
+    "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0",
+    "polymer": "polymer/polymer#^1.6.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "^4.0.0"
+  }
+}
