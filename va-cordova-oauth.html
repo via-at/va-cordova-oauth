@@ -5,30 +5,20 @@
 
       is: 'va-cordova-oauth',
 
-      get oauthManager() {
-        if (!cordova) {
-          throw new Error('No unified JavaScript layer for Cordova.');
-        }
-
-        if (!cordova.plugins.oauthManager) {
-          throw new Error('No OAuth plugin found.');
-        }
-
-        return cordova.plugins.oauthManager;
-      },
-
-      signInWithOAuth: function (provider) {
-        switch (provider) {
-          case 'google':
-            this.oauthManager.signInWithGoogle();
-            break;
-          case 'facebook':
-            this.oauthManager.signInWithFacebook();
-            break;
-          case 'twitter':
-            this.oauthManager.signInWithTwitter();
-            break;
-        }
+      signIn: function (provider) {
+        return new Promise(function (resolve, reject) {
+          switch (provider) {
+            case 'google':
+              cordova.plugins.googleOAuth.signIn(resolve, reject, VA.googleClientId);
+              break;
+            case 'facebook':
+              cordova.plugins.facebookOAuth.signIn(resolve, reject, VA.facebookClientId);
+              break;
+            case 'twitter':
+              cordova.plugins.twitterOAuth.signIn(resolve, reject, VA.twitterClientId);
+              break;
+          }
+        });
       }
     });
   </script>
